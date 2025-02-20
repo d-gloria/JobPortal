@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Sign Up</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
@@ -60,17 +60,17 @@
             background-color: #45a049;
         }
 
-        .signup-link {
+        .login-link {
             text-align: center;
             margin-top: 15px;
         }
 
-        .signup-link a {
+        .login-link a {
             color: #007BFF;
             text-decoration: none;
         }
 
-        .signup-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -78,11 +78,8 @@
 <body>
 
 <div class="container">
-    <h2>Login</h2>
-    <div th:if="${successMessage}" class="alert alert-success" role="alert">
-        <p th:text="${successMessage}"></p>
-    </div>
-    <form th:action="@{/login}" method="post">
+    <h2>Sign Up</h2>
+    <form th:action="@{/signup}" method="post">
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required />
@@ -91,10 +88,17 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required />
         </div>
-        <button type="submit">Login</button>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+        </div>
+        <button type="submit">Sign Up</button>
     </form>
-    <div class="signup-link">
-        <p>Nuk keni nje llogari? <a th:href="@{/signup}">Rregjistrohuni</a></p>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <div class="login-link">
+        <p>Already have an account? <a th:href="@{/login}">Login</a></p>
     </div>
 </div>
 
